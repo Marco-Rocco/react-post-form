@@ -1,5 +1,6 @@
+import axios from 'axios';
 import { useState } from 'react'
-const endpoint = '67c5b4f3https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts351c081993fb1ab6'
+const endpoint = 'https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts'
 
 const initialFormState = {
   author: "",
@@ -27,9 +28,14 @@ function App() {
 
   const handleSubmit = event => {
     event.preventDefault();
+
+    axios.post(endpoint, newPost)
+      .then(console.log('post creato'))
+      .catch(error(console.log(error)))
+
     console.log("inviato");
     console.log(newPost);
-
+    console.log(endpoint)
     setNewPost(initialFormState)
   }
 
@@ -41,7 +47,7 @@ function App() {
         <input type="text" placeholder='inserisci autore' name='author' value={newPost.author} onChange={handleNewPost} /> <br />
         <input type="text" placeholder='inserisci titolo' name='title' value={newPost.title} onChange={handleNewPost} /><br />
         <input type="text" placeholder='inserisci testo del post' name='body' value={newPost.body} onChange={handleNewPost} /><br />
-        <span>pubblico</span><input type="checkbox" name='public' value={newPost.public} onChange={handleNewPost} />
+        <span>pubblico</span><input type="checkbox" name='public' checked={newPost.public} onChange={handleNewPost} />
         <button>invia</button>
 
       </form>
