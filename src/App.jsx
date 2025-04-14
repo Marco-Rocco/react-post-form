@@ -1,15 +1,18 @@
 import { useState } from 'react'
+const endpoint = '67c5b4f3https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts351c081993fb1ab6'
+
+const initialFormState = {
+  author: "",
+  title: "",
+  body: "",
+  public: false,
+  id: ""
+}
 
 function App() {
 
 
-  const [newPost, setNewPost] = useState({
-    author: "",
-    title: "",
-    body: "",
-    public: false,
-    id: ""
-  })
+  const [newPost, setNewPost] = useState(initialFormState)
 
   function handleNewPost(event) {
     const value =
@@ -25,7 +28,9 @@ function App() {
   const handleSubmit = event => {
     event.preventDefault();
     console.log("inviato");
-    console.log(newPost)
+    console.log(newPost);
+
+    setNewPost(initialFormState)
   }
 
 
