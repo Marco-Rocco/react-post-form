@@ -20,19 +20,24 @@ function App() {
       ...newPost,
       [event.target.name]: value,
     }))
-    return console.log(newPost)
+  }
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log("inviato");
+    console.log(newPost)
   }
 
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
 
         <input type="text" placeholder='inserisci autore' name='author' value={newPost.author} onChange={handleNewPost} /> <br />
         <input type="text" placeholder='inserisci titolo' name='title' value={newPost.title} onChange={handleNewPost} /><br />
         <input type="text" placeholder='inserisci testo del post' name='body' value={newPost.body} onChange={handleNewPost} /><br />
         <span>pubblico</span><input type="checkbox" name='public' value={newPost.public} onChange={handleNewPost} />
-        button
+        <button>invia</button>
 
       </form>
     </>
